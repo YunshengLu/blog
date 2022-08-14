@@ -27,7 +27,7 @@ class Article(models.Model):
     belong = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True,related_name='article_user')
     belong_lanmu = models.ForeignKey(Lanmu,on_delete=models.SET_NULL,null=True,blank=True,related_name='article_lanmu')
     def __int__(self):
-        return self.id
+        return self.title
 
 #评论
 class Pinglun(models.Model):
