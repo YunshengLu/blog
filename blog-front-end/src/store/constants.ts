@@ -8,3 +8,5 @@ export const POST_AUTOLOGIN = 'POST_AUTOLOGIN'
 export const POST_LOGOUT = 'POST_LOGOUT'
 // 文章列表
 export const GET_ARTICLE_LIST = 'GET_ARTICLE_LIST'
+//  删除文章
+export const DELETE_ARTICLE = 'DELETE_ARTICLE'

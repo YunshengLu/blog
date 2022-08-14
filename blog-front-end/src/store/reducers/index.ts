@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import loginReducer from './loginReducer';
 import registerReducer from './registerReducer';
 import autoLoginReducer from './autoLogin';
-import acticleListReducer from './acticleListReducer';
+import articleListReducer from './articleListReducer';
+import deleteArticleReducer from './deleteArticleReducer';
 
 export default combineReducers({
     login: loginReducer,
     register: registerReducer,
     autoLogin: autoLoginReducer,
-    acticleList: acticleListReducer,
+    articleList: articleListReducer,
+    deleteArticle: deleteArticleReducer,
 });

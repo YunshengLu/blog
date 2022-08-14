@@ -23,10 +23,14 @@ axiosInstance.interceptors.response.use(
             throw Error(res.data.data);
         }
         if (res.data?.status === 401) {
-            router.navigate('/login');
             message.error('请重新登录');
             removeToken()
+            router.navigate('/login');
             return new Promise(() => {});
+        }
+        if (res.data === 'logout') {
+            removeToken()
+            router.navigate('/login');
         }
         return res.data;
     },

@@ -49,8 +49,8 @@ export const postAutoLoginRequest = () => {
 }
 
 // 退出登录
-export const postLogoutRequest = (token: string) => {
-    return axiosInstance.post(URL_LOGOUT, token)
+export const postLogoutRequest = () => {
+    return axiosInstance.post(URL_LOGOUT)
 }
 
 // 获取文章列表

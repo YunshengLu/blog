@@ -29,6 +29,11 @@ export const HomeWrapper = styled.div`
         color: rgba(0, 0, 0, 0.85);
         line-height: 64px;
         background: #fff;
+        .ant-btn {
+            position: absolute;
+            right: 1.5vw;
+            top: 1vh;
+        }
     }
     .ant-layout-sider {
         position: relative;
@@ -68,6 +73,12 @@ export const HomeWrapper = styled.div`
         background-color: #41414120;
         transition: all 0.3s;
         content: '';
+    }
+    .ant-layout-footer {
+        padding: 1vh 2vw;
+        color: rgba(0, 0, 0, 0.85);
+        font-size: 14px;
+        background: #f0f2f5;
     }
 `;
 

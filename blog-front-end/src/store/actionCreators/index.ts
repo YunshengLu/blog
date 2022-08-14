@@ -6,6 +6,7 @@ import {
     postAutoLoginRequest,
     postLogoutRequest,
     getArticleListRequest,
+    deleteArticleRequest,
 } from '@/api/request';
 import { setToken } from '@/utils/token';
 
@@ -57,14 +58,27 @@ export const postAutoLoginAction = () => {
 }
 
 // 获取文章列表
-export const getActicleList = (data: any) => ({
+export const getArticleList = (data: any) => ({
     type: ActionTypes.GET_ARTICLE_LIST,
     data,
 })
-export const getActicleListAction = (data: any) => {
+export const getArticleListAction = (data: any) => {
     return (dispatch: Dispatch) => {
         return getArticleListRequest(data).then(response => {
-            dispatch(getActicleList(response))
+            dispatch(getArticleList(response))
+        })
+    }
+}
+
+// 删除文章
+export const deleteArticle = (data: any) => ({
+    type: ActionTypes.DELETE_ARTICLE,
+    data,
+})
+export const deleteArticleAction = (data: number | undefined) => {
+    return (dispatch: Dispatch) => {
+        return deleteArticleRequest(data).then(response => {
+            dispatch(deleteArticle(response))
         })
     }
 }

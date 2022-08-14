@@ -16,4 +16,7 @@ export const ArticleListWrapper = styled.div`
     margin-top: 2vh;
     background-color: #fff;
     border-radius: 5px;
+    .ant-card-body {
+        padding: 24px 24px 24px 0; 
+    }
 `;

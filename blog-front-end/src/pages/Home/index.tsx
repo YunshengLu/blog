@@ -3,14 +3,11 @@ import { HomeWrapper } from './style';
 import { Link, Outlet, useLocation } from 'oh-router-react';
 import { useMemo } from 'react';
 import { router } from '@/router';
-import {
-    AppstoreOutlined,
-    CalendarOutlined,
-    AlignRightOutlined
-} from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { AppstoreOutlined, CalendarOutlined, AlignRightOutlined } from '@ant-design/icons';
+import { Button, Layout, Menu } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 import type { MenuProps, MenuTheme } from 'antd/es/menu';
+import { postLogoutRequest } from '@/api/request';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -25,6 +22,33 @@ const Home = () => {
     const changeTheme = (value: boolean) => {
         setTheme(value ? 'dark' : 'light');
     };
+
+    const logout = async () => {
+        await postLogoutRequest()
+    };
+
+    function getItem(
+        label: React.ReactNode,
+        key?: React.Key | null,
+        icon?: React.ReactNode,
+        children?: MenuItem[]
+    ): MenuItem {
+        return {
+            key,
+            icon,
+            children,
+            label,
+        } as MenuItem;
+    }
+
+    const items: MenuItem[] = [
+        getItem('文章管理', 'sub1', <AppstoreOutlined />, [
+            getItem(<Link to="/articlelist">文章列表</Link>),
+            getItem(<Link to="/article">写文章</Link>),
+        ]),
+        getItem(<Link to="/user">栏目管理</Link>, '2', <AlignRightOutlined />),
+        getItem(<Link to="/user">用户管理</Link>, '3', <CalendarOutlined />),
+    ];
 
     return (
         <HomeWrapper>
@@ -49,7 +73,9 @@ const Home = () => {
                     />
                 </Sider>
                 <Layout>
-                    <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
+                    <Header className="site-layout-sub-header-background" style={{ padding: 0 }}>
+                        <Button onClick={() => logout()}>登出</Button>
+                    </Header>
                     <Content style={{ margin: '5px 10px 0' }}>
                         <div
                             className="site-layout-background"
@@ -64,28 +90,5 @@ const Home = () => {
         </HomeWrapper>
     );
 };
-
-function getItem(
-    label: React.ReactNode,
-    key?: React.Key | null,
-    icon?: React.ReactNode,
-    children?: MenuItem[]
-): MenuItem {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    } as MenuItem;
-}
-
-const items: MenuItem[] = [
-    getItem('文章管理', 'sub1', <AppstoreOutlined />, [
-        getItem(<Link to="/articlelist">文章列表</Link>),
-        getItem(<Link to="/article">写文章</Link>),
-    ]),
-    getItem(<Link to="/user">栏目管理</Link>, '2', <AlignRightOutlined />),
-    getItem(<Link to="/user">用户管理</Link>, '3', <CalendarOutlined />),
-];
 
 export default Home;
