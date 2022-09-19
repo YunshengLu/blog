@@ -20,8 +20,10 @@ import { ReducerState } from '@/store/reducers';
 import dayjs from 'dayjs';
 
 const Save = (props) => {
-    const { time, showBack, onBack, onRefresh, onSave } = props;
-    const message = time ? `上次操作时间: ${dayjs(time * 1000).format('YYYY-MM-DD HH:mm:ss')}` : '暂无操作';
+    const { time, showBack, onBack, onRefresh, onSave, onPublish } = props;
+    const message = time
+        ? `上次操作时间: ${dayjs(time * 1000).format('YYYY-MM-DD HH:mm:ss')}`
+        : '暂无操作';
 
     const goBack = () => {
         HISTORY.goBack();
@@ -68,6 +70,16 @@ const Save = (props) => {
                         icon={<IconSave />}
                     >
                         保存
+                    </Button>
+                )}
+                {onPublish && (
+                    <Button
+                        onClick={onPublish}
+                        className={styles['box-btn']}
+                        type="primary"
+                        icon={<IconSave />}
+                    >
+                        发布
                     </Button>
                 )}
             </div>

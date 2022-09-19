@@ -24,6 +24,7 @@ import { ReducerState } from '@/store/reducers';
 import styles from './style/index.module.less';
 import { create, getList, remove, update } from '@/api/request/categories';
 import { EditableRow, EditableCell } from './edit';
+import dayjs from 'dayjs';
 
 interface rowData {
     id: string;
@@ -72,10 +73,24 @@ const Categories = () => {
         {
             title: '创建时间',
             dataIndex: 'createTime',
+            render: (_, record) => {
+                return record.createTime
+                    ? dayjs(record.createTime * 1000).format(
+                            'YYYY-MM-DD HH:mm:ss'
+                        )
+                    : '-';
+            },
         },
         {
             title: '修改时间',
             dataIndex: 'updateTime',
+            render: (_, record) => {
+                return record.updateTime
+                    ? dayjs(record.updateTime * 1000).format(
+                            'YYYY-MM-DD HH:mm:ss'
+                        )
+                    : '-';
+            },
         },
         {
             title: locale['searchTable.columns.operations'],
@@ -123,7 +138,7 @@ const Categories = () => {
             const res: any = await getList(postData);
             // console.log(res);
             if (res) {
-                const { list, totalCount } = res;
+                const { list, totalCount } = res.data;
                 dispatch({
                     type: ActionTypes.UPDATE_LIST,
                     data: { data: list },

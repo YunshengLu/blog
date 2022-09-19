@@ -19,6 +19,7 @@ import { IconDelete, IconEdit, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
 import { imagesType } from '@/utils/utils';
 import { upload } from '@/api/request/common';
+import { useLocation } from 'react-router';
 
 const Item = (props) => {
     const {
@@ -40,6 +41,8 @@ const Item = (props) => {
     const [visible, setVisible] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [form] = Form.useForm();
+    const localhost = useLocation();
+    const isHome:boolean = localhost.pathname == '/home' ? false : true;
 
     useEffect(() => {
         setImageUrl(imgUrl);
@@ -61,6 +64,7 @@ const Item = (props) => {
             field: 'imgUrl',
             value: values.imgUrl,
         });
+        setVisible(false);
         onChange();
     };
     /**
@@ -197,7 +201,7 @@ const Item = (props) => {
                 )}
 
                 <div className={styles['action']}>
-                    {showReduce && (
+                    {showReduce && isHome && (
                         <Button
                             icon={<IconDelete />}
                             status="danger"
@@ -208,7 +212,7 @@ const Item = (props) => {
                         />
                     )}
 
-                    {showAdd && (
+                    {showAdd && isHome && (
                         <Button
                             icon={<IconPlus />}
                             shape="circle"

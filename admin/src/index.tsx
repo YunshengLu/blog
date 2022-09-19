@@ -63,7 +63,7 @@ function Index() {
 
   useEffect(() => {
     if (checkLogin()) {
-      fetchUserInfo();
+      // fetchUserInfo();
     } else {
       history.push('/admin/login');
     }

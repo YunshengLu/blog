@@ -41,24 +41,27 @@ const UploadImage = (props) => {
     });
 
     useEffect(() => {
-        if (!value) return;
-        const length = value.length;
-        value.map((item, index) => {
-            if (length < max) {
-                item.showReduce = length != 1;
-                item.showAdd = length - 1 === index;
-            } else {
-                item.showReduce = true; // 可以删除
-                item.showAdd = false;
-            }
-        });
-        setImgsArr(value);
+        if (!value) {
+            setImgsArr(initImgs);
+        } else {
+            const length = value.length;
+            value.map((item, index) => {
+                if (length < max) {
+                    item.showReduce = length != 1;
+                    item.showAdd = length - 1 === index;
+                } else {
+                    item.showReduce = true; // 可以删除
+                    item.showAdd = false;
+                }
+            });
+            setImgsArr(value);
+        }
     }, [value]);
 
     const onItemChange = (data) => {
         // console.log(data);
         imgsArr.forEach((item, index) => {
-            if (index === data.index) {
+            if (index === data?.index) {
                 item[data.field] = data.value;
             }
         });

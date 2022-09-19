@@ -165,7 +165,7 @@ const Comment = () => {
             const res: any = await getList(postData);
             // console.log(res);
             if (res) {
-                const { list, totalCount } = res;
+                const { list, totalCount } = res.data;
                 dispatch({
                     type: ActionTypes.UPDATE_LIST,
                     data: { data: list },

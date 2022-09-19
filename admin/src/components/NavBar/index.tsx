@@ -15,6 +15,7 @@ import {
   Dropdown,
   Menu,
   Space,
+  Message,
 } from '@arco-design/web-react';
 import { IconSunFill, IconMoonFill } from '@arco-design/web-react/icon';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,6 +27,7 @@ import history from '@/routes/history';
 // import MessageBox from '../MessageBox';
 
 import styles from './style/index.module.less';
+import { logout } from '@/api/request/login';
 
 function Navbar() {
   const locale = useLocale();
@@ -33,21 +35,21 @@ function Navbar() {
   const userInfo = useSelector((state: ReducerState) => state.login.userInfo);
   const dispatch = useDispatch();
 
-  function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userInfo');
-    history.push('/admin/login');
-  }
-
   /**
    * @name: 发布文章及登出页面跳转
    * @msg:
    * @param {*} key
    * @return {*}
    */
-  function onMenuItemClick(key) {
+  const onMenuItemClick = async (key) => {
     if (key === 'logout') {
-      logout();
+      const res:any = await logout();
+      if (res.code === 0) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userInfo');
+        Message.success(res.msg);
+        history.push('/admin/login');
+      }
     }
   }
 
