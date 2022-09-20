@@ -16,11 +16,11 @@ export default () => {
         <Logo />
         <div className={styles['logo-text']}>博客后台管理系统</div>
       </div>
-      <div className={styles.banner}>
+      {/* <div className={styles.banner}>
         <div className={styles['banner-inner']}>
           <LoginBanner />
         </div>
-      </div>
+      </div> */}
       <div className={styles.content}>
         <div className={styles['content-inner']}>
           <LoginForm />

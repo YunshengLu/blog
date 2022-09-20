@@ -21,15 +21,15 @@ import {
     IconBook,
 } from '@arco-design/web-react/icon';
 
-export const defaultRoute = 'welcome';
+export const defaultRoute = 'articles';
 
 export const routes = [
-    {
-        name: 'menu.welcome',
-        key: 'welcome',
-        icon: <IconGift />,
-        componentPath: 'welcome',
-    },
+    // {
+    //     name: 'menu.welcome',
+    //     key: 'welcome',
+    //     icon: <IconGift />,
+    //     componentPath: 'welcome',
+    // },
     // {
     //   name: 'menu.list',
     //   key: 'list',
