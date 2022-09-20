@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import HISTORY from '@/routes/history';
-import { Button, Link } from '@arco-design/web-react';
+import { Button, Link, PageHeader } from '@arco-design/web-react';
 import styles from './style/index.module.less';
 import {
     IconClockCircle,
@@ -38,51 +38,58 @@ const Save = (props) => {
 
     return (
         <div className={styles['card']} style={{ width }}>
-            <div className={styles['box']}>
-                <Link status="warning" icon={<IconClockCircle />}>
-                    {message}
-                </Link>
-                {showBack && (
-                    <Button
-                        className={styles['box-btn']}
-                        onClick={onBack || goBack}
-                        status="success"
-                        icon={<IconUndo />}
-                    >
-                        返回
-                    </Button>
-                )}
-                {onRefresh && (
-                    <Button
-                        className={styles['box-btn']}
-                        onClick={onRefresh}
-                        status="warning"
-                        icon={<IconRefresh />}
-                    >
-                        刷新
-                    </Button>
-                )}
-                {onSave && (
-                    <Button
-                        className={styles['box-btn']}
-                        onClick={onSave}
-                        status="danger"
-                        icon={<IconSave />}
-                    >
-                        保存
-                    </Button>
-                )}
-                {onPublish && (
-                    <Button
-                        onClick={onPublish}
-                        className={styles['box-btn']}
-                        type="primary"
-                        icon={<IconSave />}
-                    >
-                        发布
-                    </Button>
-                )}
-            </div>
+            {/* <div className={styles['box']}> */}
+                <PageHeader
+                    style={{ background: 'var(--color-bg-2)',padding: '5px 0'}}
+                    extra={
+                        <div>
+                            <Link status="warning" icon={<IconClockCircle />}>
+                                {message}
+                            </Link>
+                            {showBack && (
+                                <Button
+                                    className={styles['box-btn']}
+                                    onClick={onBack || goBack}
+                                    status="success"
+                                    icon={<IconUndo />}
+                                >
+                                    返回
+                                </Button>
+                            )}
+                            {onRefresh && (
+                                <Button
+                                    className={styles['box-btn']}
+                                    onClick={onRefresh}
+                                    status="warning"
+                                    icon={<IconRefresh />}
+                                >
+                                    刷新
+                                </Button>
+                            )}
+                            {onSave && (
+                                <Button
+                                    className={styles['box-btn']}
+                                    onClick={onSave}
+                                    status="danger"
+                                    icon={<IconSave />}
+                                >
+                                    保存
+                                </Button>
+                            )}
+                            {onPublish && (
+                                <Button
+                                    onClick={onPublish}
+                                    className={styles['box-btn']}
+                                    type="primary"
+                                    icon={<IconSave />}
+                                >
+                                    发布
+                                </Button>
+                            )}
+                        </div>
+                    }
+                />
+            {/* </div> */}
         </div>
     );
 };
