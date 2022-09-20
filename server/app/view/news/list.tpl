@@ -1,10 +1,3 @@
-<!--
- * @Description: 
- * @version: 
- * @Author: LuyunSheng
- * @Date: 2022-09-01 14:49:00
- * @LastEditTime: 2022-09-01 14:52:27
--->
 <!-- app/view/news/list.tpl -->
 <html>
 
